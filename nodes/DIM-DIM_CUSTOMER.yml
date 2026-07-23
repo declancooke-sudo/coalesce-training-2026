@@ -19,6 +19,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: true
         columnReference:
           columnCounter: 8a9bc017-0922-4c0c-a697-24cc3b9f962f
@@ -34,6 +35,7 @@ operation:
           - columnReferences: []
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 383e1b79-a60f-4974-b04d-50cf55051376
@@ -50,6 +52,7 @@ operation:
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: d2fa7c37-e0bc-4142-95b4-a88a1cee75b1
@@ -66,6 +69,7 @@ operation:
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 841252dd-b1d2-4ff4-8367-eb49710e40f8
@@ -82,6 +86,7 @@ operation:
                 stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 06f849c7-b1d9-4054-8df3-30005375aaf0
@@ -98,6 +103,7 @@ operation:
                 stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 6305c239-95f9-426c-9263-89f0da76299e
@@ -114,6 +120,7 @@ operation:
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 367047f5-63dc-4efe-921d-062d9b1f127d
@@ -130,6 +137,7 @@ operation:
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 5adbb7a4-b5de-491d-8f9f-e73ef9f33c91
@@ -146,6 +154,7 @@ operation:
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 28798946-0b1a-46fe-85ac-9d11f8982306
@@ -165,6 +174,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: da02504b-e745-4dd5-9011-e472b544af9f
@@ -183,6 +193,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 93f2f501-81f0-4777-bfc7-abf6a72c3a06
@@ -201,6 +212,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 22d31831-9773-4425-a7dc-909c01955b5a
@@ -219,6 +231,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 0fda7cea-6115-4b17-b719-b14c2fb42767
@@ -237,6 +250,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: c1f4d4b6-76fd-4d8a-8ff2-d148035f1956
@@ -255,6 +269,7 @@ operation:
           strictMatch: true
           values: []
         appliedColumnTests:
+          hasNull: false
           isDistinct: false
         columnReference:
           columnCounter: 1f12721b-9264-438c-b27d-a0197b6fd18d
@@ -272,6 +287,7 @@ operation:
     cteString: ""
     enabledColumnTestIDs:
       - isDistinct
+      - hasNull
     sourceMapping:
       - aliases:
           STG_CUSTOMER: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
