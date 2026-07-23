@@ -1,0 +1,161 @@
+fileVersion: 1
+id: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+name: STG_CUSTOMER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: f9016040-d1fa-429a-9418-e277a21a0e48
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Unique identifier for each customer, serving as the primary key for this table. It is sourced directly from the upstream customer table without transformations. This key enables linking customer data to orders, sales, and other transactional records. Used extensively in customer segmentation, lifetime value calculations, and overall customer performance reporting. Referenced as a foreign key in related tables like 'Orders' and 'Sales'. This system-generated key ensures data integrity across the customer domain.
+        name: CUSTOMER_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17cdc336-1061-41fc-9e03-b1d5ded40918
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 093ed582-3936-46c9-90cf-977507ab123d
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: VARCHAR(25)
+        description: The full name of the customer, sourced directly from the upstream customer table. No transformations are applied. This field supports customer identification in operational reports, customer service interactions, and personalized marketing communications. It is associated with the CUSTOMER_KEY for specific customer records. The data is free-text, reflecting the name as provided in the source system. It is used for direct customer outreach and internal record-keeping, facilitating human readability and identification in various business processes.
+        name: CUSTOMER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 638e3ca0-486d-4b76-8cdb-4e621db26b35
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 24bbcb58-814d-43d1-baaa-c45b4b1946fe
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: VARCHAR(40)
+        description: The physical address of the customer, directly sourced from the upstream customer table. No transformations are applied to this field. It provides geographical context for customers, supporting logistics, regional sales analysis, and targeted marketing efforts. This address is linked to the CUSTOMER_KEY. It is a free-text field, which may contain variations in format. Used for shipping, billing, and geographical distribution analysis, providing location-based insights for business operations and planning.
+        name: CUSTOMER_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eca60d40-eb37-4a7d-aa29-e46398a3a7b1
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: e0ab7f06-db00-4ae9-a9ae-fc4137d8a436
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: NUMBER(38,0)
+        description: A numeric identifier linking the customer to their respective nation. This key is sourced directly from the upstream customer table without any transformations. It serves as a foreign key to the 'Nation' dimension table, enabling analysis of customer distribution by country. Used in international sales reporting, compliance checks, and geo-specific marketing strategies. This key facilitates aggregation of customer data at a national level, providing insights into global customer demographics and market penetration.
+        name: CUSTOMER_NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d05425fc-77e0-4543-bb21-87e8fa839e70
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 526e8dba-1566-469f-8044-a75d5c22f9da
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: VARCHAR(15)
+        description: The primary contact phone number for the customer, sourced directly from the upstream customer table. No transformations are applied. This field is used for direct customer communication, order confirmations, and customer support operations. It is associated with the CUSTOMER_KEY. The data is free-text, potentially containing various national and international formats. It supports operational teams in reaching customers efficiently and maintaining communication records, contributing to customer relationship management and service delivery.
+        name: CUSTOMER_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e669ad2-c1ab-4ba6-b4bc-9d9814d4cbb1
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 5af9883d-ae63-49d5-bd4c-65f96e08f200
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: NUMBER(12,2)
+        description: The current financial balance associated with the customer's account. This value is sourced directly from the upstream customer table without transformations. It is used in financial reporting, credit management, and profitability analysis to assess customer financial standing. This balance is linked to the CUSTOMER_KEY. It represents a monetary value, updated periodically based on transactions. This metric provides a snapshot of the customer's financial relationship, informing credit decisions and revenue forecasting for the business.
+        name: CUSTOMER_ACCOUNT_BALANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a432d959-eb10-4fc1-995e-9cc8bc47073d
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: e63536cc-02a0-4efe-8494-e4f78cbbe22a
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: VARCHAR(10)
+        description: Categorization of the customer into a specific market segment. This value is sourced directly from the upstream customer table without transformations. It is used for targeted marketing campaigns, product development, and sales strategy formulation. This segment is associated with the CUSTOMER_KEY. The field contains predefined categorical values, enabling aggregation and filtering of customers based on their market characteristics. It supports strategic business decisions by identifying distinct customer groups and their specific needs.
+        name: CUSTOMER_MARKET_SEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1b8952e9-87d7-4711-b1ae-c9bb2d7c4136
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: fe57abec-e6cd-4750-b034-c72adf733091
+          stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        config: {}
+        dataType: VARCHAR(117)
+        description: Miscellaneous textual notes or remarks pertaining to the customer. This field is sourced directly from the upstream customer table without transformations. It provides additional context for customer service, sales teams, and historical record-keeping. This comment is associated with the CUSTOMER_KEY. It is a free-text field, containing unstructured data that may include specific customer preferences, issues, or interactions. It supports a deeper understanding of individual customer relationships beyond structured data points.
+        name: CUSTOMER_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af106a9e-da49-4fd5-be6b-b0c82e2a331d
+                stepCounter: 70ed1989-3cdd-4247-b5ef-ccc952144233
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+    sourceMapping:
+      - aliases:
+          CUSTOMER: 70ed1989-3cdd-4247-b5ef-ccc952144233
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: CUSTOMER
+        join:
+          joinCondition: FROM {{ ref('SRC', 'CUSTOMER') }} "CUSTOMER"
+        name: STG_CUSTOMER
+        noLinkRefs: []
+  name: STG_CUSTOMER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

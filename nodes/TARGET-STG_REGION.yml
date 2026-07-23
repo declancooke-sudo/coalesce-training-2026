@@ -1,0 +1,82 @@
+fileVersion: 1
+id: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+name: STG_REGION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cde840d-c486-4c26-a5e2-8244a300461a
+          stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+        config: {}
+        dataType: NUMBER(38,0)
+        description: REGION_KEY is the unique identifier for each geographical region. It functions as the primary key for this table. Referenced as a foreign key in the NATION table, it links nations to their respective regions. This key supports regional performance analysis, sales territory mapping, and supply chain logistics. It is sourced directly without transformation from the R_REGIONKEY column in the upstream REGION table. This integer value forms the basis for aggregating regional data and ensuring data integrity across related entities, facilitating consistent regional reporting.
+        name: REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac08b2f0-1d9c-4a4a-8976-ffa4ce1395ed
+                stepCounter: e1da1c0a-62bf-4214-8390-dab52072eb25
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d6635f0-c279-4ba5-a1ce-2ceaf4b96782
+          stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+        config: {}
+        dataType: VARCHAR(25)
+        description: REGION_NAME provides the human-readable name for a geographical region. This descriptive attribute is used extensively in reports, dashboards, and user interfaces for filtering and displaying regional data. It is sourced directly without transformation from the R_NAME column in the upstream REGION table. This column is associated with REGION_KEY, offering a textual label for the numeric identifier. Its string value, typically short and descriptive, enables intuitive navigation and understanding of regional datasets for business users and analysts.
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af251bfe-bb41-4a39-b701-f90f3003ff1f
+                stepCounter: e1da1c0a-62bf-4214-8390-dab52072eb25
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc0ed089-127c-4b0e-b2b1-ed3f5f821fb1
+          stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+        config: {}
+        dataType: VARCHAR(152)
+        description: REGION_COMMENT contains additional descriptive information or notes pertaining to the geographical region. This free-form text field provides contextual understanding for detailed regional analyses, data audits, and historical insights. It is sourced directly without transformation from the R_COMMENT column in the upstream REGION table. This attribute is associated with REGION_KEY, offering supplementary details beyond the name. Its variable string content can include operational notes, historical context, or specific regional characteristics, aiding comprehensive data interpretation.
+        name: REGION_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: faec9901-7a97-42fa-8594-8a2351ccf73f
+                stepCounter: e1da1c0a-62bf-4214-8390-dab52072eb25
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          REGION: e1da1c0a-62bf-4214-8390-dab52072eb25
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: REGION
+        join:
+          joinCondition: FROM {{ ref('SRC', 'REGION') }} "REGION"
+        name: STG_REGION
+        noLinkRefs: []
+  name: STG_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

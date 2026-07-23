@@ -1,0 +1,304 @@
+fileVersion: 1
+id: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+name: DIM_CUSTOMER
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DIM
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: true
+        columnReference:
+          columnCounter: 8a9bc017-0922-4c0c-a697-24cc3b9f962f
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_CUSTOMER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 383e1b79-a60f-4974-b04d-50cf55051376
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Unique identifier for each customer, serving as the primary key for this table. It is sourced directly from the upstream customer table without transformations. This key enables linking customer data to orders, sales, and other transactional records. Used extensively in customer segmentation, lifetime value calculations, and overall customer performance reporting. Referenced as a foreign key in related tables like 'Orders' and 'Sales'. This system-generated key ensures data integrity across the customer domain.
+        isBusinessKey: true
+        name: CUSTOMER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9016040-d1fa-429a-9418-e277a21a0e48
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: d2fa7c37-e0bc-4142-95b4-a88a1cee75b1
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(25)
+        description: The full name of the customer, sourced directly from the upstream customer table. No transformations are applied. This field supports customer identification in operational reports, customer service interactions, and personalized marketing communications. It is associated with the CUSTOMER_KEY for specific customer records. The data is free-text, reflecting the name as provided in the source system. It is used for direct customer outreach and internal record-keeping, facilitating human readability and identification in various business processes.
+        isChangeTracking: true
+        name: CUSTOMER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 093ed582-3936-46c9-90cf-977507ab123d
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 841252dd-b1d2-4ff4-8367-eb49710e40f8
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(25)
+        description: The official name of the nation, sourced directly from the raw NATION table. This column provides descriptive labels for geographical regions in various business intelligence reports and dashboards. It supports filtering and grouping data by nation for sales analysis, market share calculations, and geopolitical risk assessments. No transformations are applied to this column. It is frequently displayed alongside NATION_KEY to enhance readability and user understanding of aggregated metrics. This name is a key attribute for regional data visualization and reporting.
+        isChangeTracking: true
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c988e8b-5495-40fc-a26c-37202be2815a
+                stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 06f849c7-b1d9-4054-8df3-30005375aaf0
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(25)
+        description: REGION_NAME provides the human-readable name for a geographical region. This descriptive attribute is used extensively in reports, dashboards, and user interfaces for filtering and displaying regional data. It is sourced directly without transformation from the R_NAME column in the upstream REGION table. This column is associated with REGION_KEY, offering a textual label for the numeric identifier. Its string value, typically short and descriptive, enables intuitive navigation and understanding of regional datasets for business users and analysts.
+        isChangeTracking: true
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d6635f0-c279-4ba5-a1ce-2ceaf4b96782
+                stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 6305c239-95f9-426c-9263-89f0da76299e
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(40)
+        description: The physical address of the customer, directly sourced from the upstream customer table. No transformations are applied to this field. It provides geographical context for customers, supporting logistics, regional sales analysis, and targeted marketing efforts. This address is linked to the CUSTOMER_KEY. It is a free-text field, which may contain variations in format. Used for shipping, billing, and geographical distribution analysis, providing location-based insights for business operations and planning.
+        isChangeTracking: true
+        name: CUSTOMER_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 24bbcb58-814d-43d1-baaa-c45b4b1946fe
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 367047f5-63dc-4efe-921d-062d9b1f127d
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(15)
+        description: The primary contact phone number for the customer, sourced directly from the upstream customer table. No transformations are applied. This field is used for direct customer communication, order confirmations, and customer support operations. It is associated with the CUSTOMER_KEY. The data is free-text, potentially containing various national and international formats. It supports operational teams in reaching customers efficiently and maintaining communication records, contributing to customer relationship management and service delivery.
+        isChangeTracking: true
+        name: CUSTOMER_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 526e8dba-1566-469f-8044-a75d5c22f9da
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 5adbb7a4-b5de-491d-8f9f-e73ef9f33c91
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(10)
+        description: Categorization of the customer into a specific market segment. This value is sourced directly from the upstream customer table without transformations. It is used for targeted marketing campaigns, product development, and sales strategy formulation. This segment is associated with the CUSTOMER_KEY. The field contains predefined categorical values, enabling aggregation and filtering of customers based on their market characteristics. It supports strategic business decisions by identifying distinct customer groups and their specific needs.
+        isChangeTracking: true
+        name: CUSTOMER_MARKET_SEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e63536cc-02a0-4efe-8494-e4f78cbbe22a
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 28798946-0b1a-46fe-85ac-9d11f8982306
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR(117)
+        description: Miscellaneous textual notes or remarks pertaining to the customer. This field is sourced directly from the upstream customer table without transformations. It provides additional context for customer service, sales teams, and historical record-keeping. This comment is associated with the CUSTOMER_KEY. It is a free-text field, containing unstructured data that may include specific customer preferences, issues, or interactions. It supports a deeper understanding of individual customer relationships beyond structured data points.
+        isChangeTracking: true
+        name: CUSTOMER_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe57abec-e6cd-4750-b034-c72adf733091
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: da02504b-e745-4dd5-9011-e472b544af9f
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 93f2f501-81f0-4777-bfc7-abf6a72c3a06
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 22d31831-9773-4425-a7dc-909c01955b5a
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 0fda7cea-6115-4b17-b719-b14c2fb42767
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: c1f4d4b6-76fd-4d8a-8ff2-d148035f1956
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          isDistinct: false
+        columnReference:
+          columnCounter: 1f12721b-9264-438c-b27d-a0197b6fd18d
+          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs:
+      - isDistinct
+    sourceMapping:
+      - aliases:
+          STG_CUSTOMER: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+          STG_NATION: ef431454-a869-4c8a-bbae-2227e501156a
+          STG_REGION: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_CUSTOMER
+          - locationName: TARGET
+            nodeName: STG_NATION
+          - locationName: TARGET
+            nodeName: STG_REGION
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
+            INNER JOIN {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
+            ON "STG_CUSTOMER"."CUSTOMER_NATION_KEY" = "STG_NATION"."NATION_KEY"
+            INNER JOIN {{ ref('TARGET', 'STG_REGION') }} "STG_REGION"
+            ON "STG_NATION"."NATION_REGION_KEY" = "STG_REGION"."REGION_KEY"
+        name: DIM_CUSTOMER
+        noLinkRefs: []
+  name: DIM_CUSTOMER
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

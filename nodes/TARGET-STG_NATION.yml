@@ -1,0 +1,96 @@
+fileVersion: 1
+id: ef431454-a869-4c8a-bbae-2227e501156a
+name: STG_NATION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4141e2b-82f1-4593-ad1c-44af678e4d0b
+          stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Primary key for the Nation dimension table, sourced directly from the raw NATION table. This identifier is used for joining with other fact and dimension tables, such as CUSTOMER and SUPPLIER, to provide geographical context for business transactions. It enables regional performance analysis, supply chain optimization, and customer demographic reporting. No transformations are applied to this column. It serves as a unique identifier for each nation, supporting data integrity and efficient data retrieval across the data warehouse. This key is fundamental for aggregating data by nation.
+        name: NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8f0fa2e-0580-4d24-81e7-951f433f25ae
+                stepCounter: 8fb3a4cd-af38-4a2f-9d11-ff227f219cb0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c988e8b-5495-40fc-a26c-37202be2815a
+          stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+        config: {}
+        dataType: VARCHAR(25)
+        description: The official name of the nation, sourced directly from the raw NATION table. This column provides descriptive labels for geographical regions in various business intelligence reports and dashboards. It supports filtering and grouping data by nation for sales analysis, market share calculations, and geopolitical risk assessments. No transformations are applied to this column. It is frequently displayed alongside NATION_KEY to enhance readability and user understanding of aggregated metrics. This name is a key attribute for regional data visualization and reporting.
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 424bc6e4-7eb6-4145-88a7-bb6e0569b4a2
+                stepCounter: 8fb3a4cd-af38-4a2f-9d11-ff227f219cb0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4765cf39-c46a-42e8-9612-3d6d570a023c
+          stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Foreign key linking to the REGION dimension table, sourced directly from the raw NATION table. This key establishes the hierarchical relationship between nations and their respective regions, enabling roll-up analytics from nation to regional levels. It supports regional sales performance tracking, supply chain logistics, and market trend analysis. No transformations are applied. This identifier facilitates joining with the REGION table to retrieve region-specific attributes, providing broader geographical context for business operations and strategic planning initiatives. It is crucial for regional aggregations.
+        name: NATION_REGION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb0f7851-24de-44c5-b3f5-6afc239c4ba8
+                stepCounter: 8fb3a4cd-af38-4a2f-9d11-ff227f219cb0
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 572a5b6c-5995-492b-b640-f2d34317103a
+          stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+        config: {}
+        dataType: VARCHAR(152)
+        description: Descriptive text providing additional information or notes about the nation, sourced directly from the raw NATION table. This free-text field can contain specific details relevant to a nation's characteristics, economic status, or any other pertinent business context. It is used for ad-hoc analysis and qualitative insights, complementing quantitative data in reports. No transformations are applied to this column. While not typically used for direct joins, it offers supplementary context for deeper understanding of national data points. This comment field supports detailed data exploration.
+        name: NATION_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a8ca2be-9194-4b8e-95f4-ae1b1d95f9e6
+                stepCounter: 8fb3a4cd-af38-4a2f-9d11-ff227f219cb0
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          NATION: 8fb3a4cd-af38-4a2f-9d11-ff227f219cb0
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: NATION
+        join:
+          joinCondition: FROM {{ ref('SRC', 'NATION') }} "NATION"
+        name: STG_NATION
+        noLinkRefs: []
+  name: STG_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

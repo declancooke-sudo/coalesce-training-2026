@@ -1,0 +1,123 @@
+fileVersion: 1
+id: ae406db9-e556-41e4-8c35-bf198fb25004
+name: FACT_CUSTOMER_ACCOUNT_BALANCE
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: FACT
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f9b81bb-9eda-445b-a1e8-b38d422ef38d
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: DIM_CUSTOMER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8a9bc017-0922-4c0c-a697-24cc3b9f962f
+                stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d679631-d7f0-47af-85a3-61a29c236b70
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Unique identifier for each customer, serving as the primary key for this table. It is sourced directly from the upstream customer table without transformations. This key enables linking customer data to orders, sales, and other transactional records. Used extensively in customer segmentation, lifetime value calculations, and overall customer performance reporting. Referenced as a foreign key in related tables like 'Orders' and 'Sales'. This system-generated key ensures data integrity across the customer domain.
+        isBusinessKey: true
+        name: CUSTOMER_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9016040-d1fa-429a-9418-e277a21a0e48
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dabe88c5-a08e-41f3-8984-41efb1064bd1
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: NUMBER(12,2)
+        description: The current financial balance associated with the customer's account. This value is sourced directly from the upstream customer table without transformations. It is used in financial reporting, credit management, and profitability analysis to assess customer financial standing. This balance is linked to the CUSTOMER_KEY. It represents a monetary value, updated periodically based on transactions. This metric provides a snapshot of the customer's financial relationship, informing credit decisions and revenue forecasting for the business.
+        name: CUSTOMER_ACCOUNT_BALANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5af9883d-ae63-49d5-bd4c-65f96e08f200
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e738c64-83d7-40de-a58b-0d93f0d51252
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a331682-6863-4448-8bef-786d0acb207d
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_CUSTOMER: aac1ed18-c2e8-4c3d-b29c-67b69968d153
+          STG_CUSTOMER: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DIM
+            nodeName: DIM_CUSTOMER
+          - locationName: TARGET
+            nodeName: STG_CUSTOMER
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
+            LEFT JOIN {{ ref('DIM', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+            ON "STG_CUSTOMER"."CUSTOMER_KEY" = "DIM_CUSTOMER"."CUSTOMER_KEY"
+            WHERE DIM_CUSTOMER.SYSTEM_CURRENT_FLAG = TRUE
+        name: FACT_CUSTOMER_ACCOUNT_BALANCE
+        noLinkRefs: []
+  name: FACT_CUSTOMER_ACCOUNT_BALANCE
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node
