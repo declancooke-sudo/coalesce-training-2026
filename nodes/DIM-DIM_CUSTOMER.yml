@@ -68,39 +68,19 @@ operation:
               - columnCounter: 093ed582-3936-46c9-90cf-977507ab123d
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
-      - appliedColumnTests:
-          hasNull: false
-          isDistinct: false
+      - appliedColumnTests: {}
         columnReference:
-          columnCounter: 841252dd-b1d2-4ff4-8367-eb49710e40f8
+          columnCounter: 432f34fd-3dfe-41b4-9af8-092e21934860
           stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
         config: {}
-        dataType: VARCHAR(25)
-        description: The official name of the nation, sourced directly from the raw NATION table. This column provides descriptive labels for geographical regions in various business intelligence reports and dashboards. It supports filtering and grouping data by nation for sales analysis, market share calculations, and geopolitical risk assessments. No transformations are applied to this column. It is frequently displayed alongside NATION_KEY to enhance readability and user understanding of aggregated metrics. This name is a key attribute for regional data visualization and reporting.
-        isChangeTracking: true
-        name: NATION_NAME
+        dataType: NUMBER(38,0)
+        description: A numeric identifier linking the customer to their respective nation. This key is sourced directly from the upstream customer table without any transformations. It serves as a foreign key to the 'Nation' dimension table, enabling analysis of customer distribution by country. Used in international sales reporting, compliance checks, and geo-specific marketing strategies. This key facilitates aggregation of customer data at a national level, providing insights into global customer demographics and market penetration.
+        name: CUSTOMER_NATION_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 3c988e8b-5495-40fc-a26c-37202be2815a
-                stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
-            transform: ""
-      - appliedColumnTests:
-          hasNull: false
-          isDistinct: false
-        columnReference:
-          columnCounter: 06f849c7-b1d9-4054-8df3-30005375aaf0
-          stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
-        config: {}
-        dataType: VARCHAR(25)
-        description: REGION_NAME provides the human-readable name for a geographical region. This descriptive attribute is used extensively in reports, dashboards, and user interfaces for filtering and displaying regional data. It is sourced directly without transformation from the R_NAME column in the upstream REGION table. This column is associated with REGION_KEY, offering a textual label for the numeric identifier. Its string value, typically short and descriptive, enables intuitive navigation and understanding of regional datasets for business users and analysts.
-        isChangeTracking: true
-        name: REGION_NAME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 5d6635f0-c279-4ba5-a1ce-2ceaf4b96782
-                stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+              - columnCounter: e0ab7f06-db00-4ae9-a9ae-fc4137d8a436
+                stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
       - appliedColumnTests:
           hasNull: false
@@ -291,24 +271,14 @@ operation:
     sourceMapping:
       - aliases:
           STG_CUSTOMER: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
-          STG_NATION: ef431454-a869-4c8a-bbae-2227e501156a
-          STG_REGION: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET
             nodeName: STG_CUSTOMER
-          - locationName: TARGET
-            nodeName: STG_NATION
-          - locationName: TARGET
-            nodeName: STG_REGION
         join:
-          joinCondition: |-
+          joinCondition: |
             FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
-            INNER JOIN {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
-            ON "STG_CUSTOMER"."CUSTOMER_NATION_KEY" = "STG_NATION"."NATION_KEY"
-            INNER JOIN {{ ref('TARGET', 'STG_REGION') }} "STG_REGION"
-            ON "STG_NATION"."NATION_REGION_KEY" = "STG_REGION"."REGION_KEY"
         name: DIM_CUSTOMER
         noLinkRefs: []
   name: DIM_CUSTOMER

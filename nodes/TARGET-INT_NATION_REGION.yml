@@ -1,0 +1,101 @@
+fileVersion: 1
+id: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+name: INT_NATION_REGION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1ff02594-b7ff-4e43-ac58-242641d64626
+          stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Primary key for the Nation dimension table, sourced directly from the raw NATION table. This identifier is used for joining with other fact and dimension tables, such as CUSTOMER and SUPPLIER, to provide geographical context for business transactions. It enables regional performance analysis, supply chain optimization, and customer demographic reporting. No transformations are applied to this column. It serves as a unique identifier for each nation, supporting data integrity and efficient data retrieval across the data warehouse. This key is fundamental for aggregating data by nation.
+        name: NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4141e2b-82f1-4593-ad1c-44af678e4d0b
+                stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ff73881-77ee-4e96-9e23-172fc4611228
+          stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+        config: {}
+        dataType: VARCHAR(25)
+        description: The official name of the nation, sourced directly from the raw NATION table. This column provides descriptive labels for geographical regions in various business intelligence reports and dashboards. It supports filtering and grouping data by nation for sales analysis, market share calculations, and geopolitical risk assessments. No transformations are applied to this column. It is frequently displayed alongside NATION_KEY to enhance readability and user understanding of aggregated metrics. This name is a key attribute for regional data visualization and reporting.
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c988e8b-5495-40fc-a26c-37202be2815a
+                stepCounter: ef431454-a869-4c8a-bbae-2227e501156a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32d25593-e290-42a7-bf05-3a97276fb429
+          stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+        config: {}
+        dataType: VARCHAR(25)
+        description: REGION_NAME provides the human-readable name for a geographical region. This descriptive attribute is used extensively in reports, dashboards, and user interfaces for filtering and displaying regional data. It is sourced directly without transformation from the R_NAME column in the upstream REGION table. This column is associated with REGION_KEY, offering a textual label for the numeric identifier. Its string value, typically short and descriptive, enables intuitive navigation and understanding of regional datasets for business users and analysts.
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d6635f0-c279-4ba5-a1ce-2ceaf4b96782
+                stepCounter: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_NATION: ef431454-a869-4c8a-bbae-2227e501156a
+          STG_REGION: 6bce3eed-d7ef-4ea1-867f-263cdb93af63
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_COUNTRY_REGION
+          - locationName: TARGET
+            nodeName: STG_NATION
+          - locationName: TARGET
+            nodeName: STG_REGION
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
+            INNER JOIN {{ ref('TARGET', 'STG_REGION') }} "STG_REGION"
+                ON "STG_NATION"."NATION_REGION_KEY" = "STG_REGION"."REGION_KEY"
+
+            UNION ALL 
+
+            SELECT 
+                "NATION_KEY",
+                "NATION_NAME",
+                "REGION_NAME"
+            FROM {{ ref('TARGET', 'STG_COUNTRY_REGION') }}
+            WHERE "NATION_NAME" NOT IN (
+                SELECT "NATION_NAME" FROM {{ ref('TARGET', 'STG_NATION') }}
+            )
+        name: INT_NATION_REGION
+        noLinkRefs: []
+  name: INT_NATION_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

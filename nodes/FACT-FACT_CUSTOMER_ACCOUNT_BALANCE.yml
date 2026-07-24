@@ -15,22 +15,26 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: false
         columnReference:
           columnCounter: 6f9b81bb-9eda-445b-a1e8-b38d422ef38d
           stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
         config: {}
         dataType: NUMBER
         description: ""
-        isBusinessKey: true
+        isBusinessKey: false
         name: DIM_CUSTOMER_KEY
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 8a9bc017-0922-4c0c-a697-24cc3b9f962f
                 stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: false
         columnReference:
           columnCounter: 8d679631-d7f0-47af-85a3-61a29c236b70
           stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
@@ -45,7 +49,9 @@ operation:
               - columnCounter: f9016040-d1fa-429a-9418-e277a21a0e48
                 stepCounter: 95b002ad-8dd0-4f8d-98bd-98d8a7c0f29e
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: false
         columnReference:
           columnCounter: dabe88c5-a08e-41f3-8984-41efb1064bd1
           stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
@@ -64,6 +70,29 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
+          columnCounter: 3f83f942-ead1-44ea-a111-dd6f68f17c01
+          stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        isBusinessKey: true
+        keyColumnType: None
+        name: SNAPSHOT_DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_DATE()
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: true
+          isDistinct: false
+        columnReference:
           columnCounter: 7e738c64-83d7-40de-a58b-0d93f0d51252
           stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
         config: {}
@@ -79,7 +108,9 @@ operation:
       - acceptedValues:
           strictMatch: true
           values: []
-        appliedColumnTests: {}
+        appliedColumnTests:
+          hasNull: true
+          isDistinct: false
         columnReference:
           columnCounter: 2a331682-6863-4448-8bef-786d0acb207d
           stepCounter: ae406db9-e556-41e4-8c35-bf198fb25004
@@ -94,7 +125,9 @@ operation:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
     sourceMapping:
       - aliases:
           DIM_CUSTOMER: aac1ed18-c2e8-4c3d-b29c-67b69968d153
@@ -111,7 +144,7 @@ operation:
             FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
             LEFT JOIN {{ ref('DIM', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
             ON "STG_CUSTOMER"."CUSTOMER_KEY" = "DIM_CUSTOMER"."CUSTOMER_KEY"
-            WHERE DIM_CUSTOMER.SYSTEM_CURRENT_FLAG = TRUE
+            AND "DIM_CUSTOMER"."SYSTEM_CURRENT_FLAG" = TRUE
         name: FACT_CUSTOMER_ACCOUNT_BALANCE
         noLinkRefs: []
   name: FACT_CUSTOMER_ACCOUNT_BALANCE

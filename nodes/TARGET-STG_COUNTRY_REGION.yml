@@ -1,0 +1,88 @@
+fileVersion: 1
+id: f536196e-d956-4a69-a806-8955b14f0f93
+name: STG_COUNTRY_REGION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1fe9b9bc-82d9-4156-b56a-1c75b8eaf9dd
+          stepCounter: f536196e-d956-4a69-a806-8955b14f0f93
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ABS(HASH("COUNTRY_REGION"."NAME"))
+        systemColumnType: None
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0021c34b-073b-4b19-aa6a-8f49877aa54e
+          stepCounter: f536196e-d956-4a69-a806-8955b14f0f93
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2a9ad0c-2acd-48bb-a9db-f9a06ebe2702
+                stepCounter: ea9c590a-097f-473b-8d07-fe85939e7cd4
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 76751bf0-650e-4019-9eb4-cbbbb48e1797
+          stepCounter: f536196e-d956-4a69-a806-8955b14f0f93
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a493a341-c9b4-4fc7-a0a3-d55ff2f6fd99
+                stepCounter: ea9c590a-097f-473b-8d07-fe85939e7cd4
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          COUNTRY_REGION: ea9c590a-097f-473b-8d07-fe85939e7cd4
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC
+            nodeName: COUNTRY_REGION
+        join:
+          joinCondition: FROM {{ ref('SRC', 'COUNTRY_REGION') }} "COUNTRY_REGION"
+        name: STG_COUNTRY_REGION
+        noLinkRefs: []
+  name: STG_COUNTRY_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,224 @@
+fileVersion: 1
+id: fdb69886-622b-45b0-895d-673f9c91fca4
+name: DIM_NATION
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DIM
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 38e8b007-db3b-49e4-9d2c-1730df94c58d
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: c234e11f-42e5-4247-94b9-7a7e2a21c18c
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Primary key for the Nation dimension table, sourced directly from the raw NATION table. This identifier is used for joining with other fact and dimension tables, such as CUSTOMER and SUPPLIER, to provide geographical context for business transactions. It enables regional performance analysis, supply chain optimization, and customer demographic reporting. No transformations are applied to this column. It serves as a unique identifier for each nation, supporting data integrity and efficient data retrieval across the data warehouse. This key is fundamental for aggregating data by nation.
+        isBusinessKey: true
+        name: NATION_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1ff02594-b7ff-4e43-ac58-242641d64626
+                stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 088151a1-d791-4636-a426-bc583576dae2
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: VARCHAR
+        description: The official name of the nation, sourced directly from the raw NATION table. This column provides descriptive labels for geographical regions in various business intelligence reports and dashboards. It supports filtering and grouping data by nation for sales analysis, market share calculations, and geopolitical risk assessments. No transformations are applied to this column. It is frequently displayed alongside NATION_KEY to enhance readability and user understanding of aggregated metrics. This name is a key attribute for regional data visualization and reporting.
+        isChangeTracking: true
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4ff73881-77ee-4e96-9e23-172fc4611228
+                stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: false
+        columnReference:
+          columnCounter: 8239469d-d2db-494f-bfec-88fc0a7cdcfd
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: VARCHAR
+        description: REGION_NAME provides the human-readable name for a geographical region. This descriptive attribute is used extensively in reports, dashboards, and user interfaces for filtering and displaying regional data. It is sourced directly without transformation from the R_NAME column in the upstream REGION table. This column is associated with REGION_KEY, offering a textual label for the numeric identifier. Its string value, typically short and descriptive, enables intuitive navigation and understanding of regional datasets for business users and analysts.
+        isChangeTracking: true
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32d25593-e290-42a7-bf05-3a97276fb429
+                stepCounter: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: dc681817-bcc7-4bed-ae4a-fd77227d1257
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: fe53fac8-6f13-4c2d-abbd-146c1d499ac3
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 6c1600df-7163-4219-a9cf-92aa99a30024
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 80ad3723-8309-4ff5-b3b9-f78357273a5d
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: b1697ef3-2edc-4b5f-8c72-6b5df0708b1b
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 9f5f35e0-c538-44d6-a0b4-a30f218141c5
+          stepCounter: fdb69886-622b-45b0-895d-673f9c91fca4
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    sourceMapping:
+      - aliases:
+          INT_NATION_REGION: 1288b4f7-44c6-4a2b-83c4-c48b81dbf055
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: INT_NATION_REGION
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'INT_NATION_REGION') }} "INT_NATION_REGION"
+        name: DIM_NATION
+        noLinkRefs: []
+  name: DIM_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node
