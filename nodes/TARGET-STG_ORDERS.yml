@@ -24,7 +24,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
-        name: O_ORDERKEY
+        name: ORDER_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -38,7 +38,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
-        name: O_CUSTKEY
+        name: ORDER_CUSTOMER_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -52,7 +52,7 @@ operation:
         config: {}
         dataType: VARCHAR(1)
         description: ""
-        name: O_ORDERSTATUS
+        name: ORDER_STATUS
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -66,7 +66,7 @@ operation:
         config: {}
         dataType: NUMBER(12,2)
         description: ""
-        name: O_TOTALPRICE
+        name: ORDER_TOTALPRICE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -80,7 +80,7 @@ operation:
         config: {}
         dataType: DATE
         description: ""
-        name: O_ORDERDATE
+        name: ORDER_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -94,7 +94,7 @@ operation:
         config: {}
         dataType: VARCHAR(15)
         description: ""
-        name: O_ORDERPRIORITY
+        name: ORDER_PRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -108,7 +108,7 @@ operation:
         config: {}
         dataType: VARCHAR(15)
         description: ""
-        name: O_CLERK
+        name: ORDER_CLERK
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -122,7 +122,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
-        name: O_SHIPPRIORITY
+        name: ORDER_SHIP_PRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -136,7 +136,7 @@ operation:
         config: {}
         dataType: VARCHAR(79)
         description: ""
-        name: O_COMMENT
+        name: ORDER_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:

@@ -179,7 +179,7 @@ operation:
           columnCounter: 93f2f501-81f0-4777-bfc7-abf6a72c3a06
           stepCounter: aac1ed18-c2e8-4c3d-b29c-67b69968d153
         config: {}
-        dataType: VARCHAR
+        dataType: BOOLEAN
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true

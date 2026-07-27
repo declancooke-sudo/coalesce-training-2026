@@ -1,0 +1,157 @@
+fileVersion: 1
+id: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+name: FACT_SUPPLIER_ACCOUNT_BALANCE
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: FACT
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: f5d7f1e2-8e47-49e1-8042-bb4bfebf8e01
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_SUPPLIER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b5ba2949-ae41-4bf3-bda8-66a0e41f1d47
+                stepCounter: db8ee613-fc69-4fc6-9277-a6f198452179
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: d5001fc5-9df2-4f9a-a241-d7c1a7ea9c19
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: SUPPLIER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d52bb64-1863-420a-8f62-93eb17bd7edc
+                stepCounter: 5fcef842-3137-4e5c-990c-e7696b80c73a
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: d0a19c65-b407-4923-8c43-0d79da2d8b71
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: SUPPLIER_ACCOUNT_BALANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66ee2af4-c904-49ff-b192-7a04d8b018f2
+                stepCounter: 5fcef842-3137-4e5c-990c-e7696b80c73a
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 04d10a1a-1bb4-4da8-b26e-2f1209550b8f
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        isBusinessKey: true
+        keyColumnType: None
+        name: SNAPSHOT DATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_DATE()
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 471eeed6-68da-4e04-bd80-3708ae1799a2
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 9f3c9b70-a230-4d23-9592-9e839738c183
+          stepCounter: f5cce679-1ce2-46be-a0d8-1c68d2260bd8
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    sourceMapping:
+      - aliases:
+          DIM_SUPPLIER: db8ee613-fc69-4fc6-9277-a6f198452179
+          STG_SUPPLIER: 5fcef842-3137-4e5c-990c-e7696b80c73a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DIM
+            nodeName: DIM_SUPPLIER
+          - locationName: TARGET
+            nodeName: STG_SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_SUPPLIER') }} "STG_SUPPLIER"
+            INNER JOIN {{ ref('DIM', 'DIM_SUPPLIER') }} "DIM_SUPPLIER"
+            ON "STG_SUPPLIER"."SUPPLIER_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"
+            AND "DIM_SUPPLIER"."SYSTEM_CURRENT_FLAG" = TRUE
+        name: FACT_SUPPLIER_ACCOUNT_BALANCE
+        noLinkRefs: []
+  name: FACT_SUPPLIER_ACCOUNT_BALANCE
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node

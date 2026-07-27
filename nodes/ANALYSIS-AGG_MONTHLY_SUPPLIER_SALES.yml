@@ -1,0 +1,83 @@
+fileVersion: 1
+id: 395054b5-217f-4383-9ef3-2900e2501ca1
+name: AGG_MONTHLY_SUPPLIER_SALES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: ANALYSIS
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3799c782-a5ec-4cb2-91e2-989d0c120128
+          stepCounter: 395054b5-217f-4383-9ef3-2900e2501ca1
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_SUPPLIER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0d2c749f-18ea-45d4-91bb-b63b7257530f
+                stepCounter: 1dd9d118-2729-432d-8042-536e237cb660
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d91a21a-7eff-4c15-ae43-4c38c1f6a432
+          stepCounter: 395054b5-217f-4383-9ef3-2900e2501ca1
+        config: {}
+        dataType: DATE
+        description: ""
+        name: ORDER_MONTH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e7b512e-cd4f-4278-983f-517d8fb3ba4d
+                stepCounter: 1dd9d118-2729-432d-8042-536e237cb660
+            transform: TO_CHAR("FACT_LINE_ITEM"."LINE_SHIPDATE", 'YYYY-MM')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f87edd83-b68e-4a0e-ba98-75e190922bdf
+          stepCounter: 395054b5-217f-4383-9ef3-2900e2501ca1
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a761132d-4321-402b-9820-a6dd9c70796a
+                stepCounter: 1dd9d118-2729-432d-8042-536e237cb660
+            transform: SUM("FACT_LINE_ITEM"."LINE_EXTENDEDPRICE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          FACT_LINE_ITEM: 1dd9d118-2729-432d-8042-536e237cb660
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: FACT
+            nodeName: FACT_LINE_ITEM
+        join:
+          joinCondition: |-
+            FROM {{ ref('FACT', 'FACT_LINE_ITEM') }} "FACT_LINE_ITEM"
+            GROUP BY
+                "FACT_LINE_ITEM"."DIM_SUPPLIER_KEY",
+                TO_CHAR("FACT_LINE_ITEM"."LINE_SHIPDATE", 'YYYY-MM')
+        name: AGG_MONTHLY_SUPPLIER_SALES
+        noLinkRefs: []
+  name: AGG_MONTHLY_SUPPLIER_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

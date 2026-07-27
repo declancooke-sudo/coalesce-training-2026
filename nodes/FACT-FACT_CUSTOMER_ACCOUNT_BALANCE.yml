@@ -142,7 +142,7 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
-            LEFT JOIN {{ ref('DIM', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+            INNER JOIN {{ ref('DIM', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
             ON "STG_CUSTOMER"."CUSTOMER_KEY" = "DIM_CUSTOMER"."CUSTOMER_KEY"
             AND "DIM_CUSTOMER"."SYSTEM_CURRENT_FLAG" = TRUE
         name: FACT_CUSTOMER_ACCOUNT_BALANCE
